@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "hLIdhYZGw/9EiwTW1pC9s6WxUX0j8iSVZolVrUyERxc=",
+  "Source": "employeeSample.API",
+  "BasePath": "_content/employeeSample.API",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
