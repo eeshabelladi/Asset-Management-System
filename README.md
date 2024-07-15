@@ -18,8 +18,8 @@ The Employee Asset Management System is a web application designed to manage IT 
 
 ## Tools and Technologies
 - **Version Control**: Git
-- **Front End (UI)**: Angular 16 (HTML, CSS, Bootstrap)
-- **Back End**: .NET Core (Web API)
+- **Front End (UI)**: Angular 18 (HTML, CSS, Bootstrap)
+- **Back End**: ASP.NET 8 (Web API)
 - **Database**: Microsoft SQL Server
 - **ORM Tool**: Entity Framework
 - **Server Management**: SQL Server Management Studio (SSMS)
