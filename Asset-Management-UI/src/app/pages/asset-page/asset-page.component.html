@@ -1,0 +1,25 @@
+<div>
+  <h2>Your Assets</h2>
+  <div class="container">
+  <table>
+    <thead>
+      <tr>
+        <th>Serial Number</th>
+        <th>Asset Type</th>
+        <th>Brand</th>
+        <th>Model</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let allocation of allocations">
+        <td>{{ allocation.serialNumber }}</td>
+        <td>{{ allocation.assetType }}</td>
+        <td>{{ allocation.brand }}</td>
+        <td>{{ allocation.model }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+</div>
+  
+

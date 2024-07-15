@@ -1,0 +1,28 @@
+
+.container {
+    padding-top: 20px;
+    display: flex;
+    justify-content: center; /* Horizontally center the table */
+    align-items: center;    
+  }
+  
+  table {
+    width: 600px;
+    border-collapse: collapse;
+  }
+  
+  th, td {
+    width: 200px;
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  
+  th {
+    background-color: #f2f2f2;
+  }
+  
+  h2 {
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  

@@ -1,0 +1,12 @@
+<div class="select-role">
+    <a href="#" (click)="toggleRoleDropdown($event)" class="select-role-link">
+      {{ selectedRole }} <!-- Show the selected role -->
+      <span class="dropdown-arrow">&#9662;</span> <!-- Dropdown arrow -->
+    </a>
+    <ul *ngIf="showRoleDropdown" class="role-dropdown">
+      <li *ngFor="let role of roles" (click)="selectRole(role)">
+        {{ role }}
+      </li>
+    </ul>
+  </div>
+  

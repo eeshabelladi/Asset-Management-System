@@ -1,0 +1,62 @@
+<app-select-role (roleSelected)="onRoleSelected($event)"></app-select-role>
+<div class="sidebar">
+  <div class="sidebar-header">
+    <h3>Menu</h3>
+  </div>
+  <ul class="list-unstyled components">
+    <li>
+      <a routerLink="dashboard" routerLinkActive="router-link-active">Home</a>
+    </li>
+    <li *ngIf="selectedRole === 'Employee'">
+      <a routerLink="Your-assets" routerLinkActive="router-link-active">View your Assets</a>
+    </li>
+    <li *ngIf="selectedRole === 'Employee'">
+      <a class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        Requests
+      </a>
+      <ul class="dropdown-menu dropdown-menu-dark">
+        <li><a class="dropdown-item" routerLink="New-Request" routerLinkActive="router-link-active">New Request</a></li>
+        <li><a class="dropdown-item" href="#">View all Requests</a></li>
+      </ul>
+    </li>
+    <li *ngIf="selectedRole === 'Manager'">
+      <a>View Requests</a>
+    </li>
+    <li *ngIf="selectedRole === 'IT infrastructure User'">
+      <a>View Assets</a>
+    </li>
+    <li *ngIf="selectedRole === 'IT infrastructure User'">
+      <a>View Inventory</a>
+    </li>
+    <li *ngIf="selectedRole === 'IT infrastructure User'">
+      <a>View Allocations</a>
+    </li>
+    <li *ngIf="selectedRole === 'IT infrastructure User'">
+      <a>View Requests</a>
+    </li>
+    <li *ngIf="selectedRole === 'Admin'">
+      <a routerLink="View-Employees" routerLinkActive="router-link-active">View Employees</a>
+    </li>
+    <li *ngIf="selectedRole === 'Admin'">
+      <a>View Roles</a>
+    </li>
+    <li *ngIf="selectedRole === 'Admin'">
+      <a>View Assets</a>
+    </li>
+    <li *ngIf="selectedRole === 'Admin'">
+      <a>View Inventory</a>
+    </li>
+    <li *ngIf="selectedRole === 'Admin'">
+      <a>View Allocations</a>
+    </li>
+    <li *ngIf="selectedRole === 'Admin'">
+      <a>View Requests</a>
+    </li>
+    <li>
+      <a (click)="onLogout()">Logout</a>
+    </li>
+  </ul>
+</div>
+<div class="content">
+  <router-outlet></router-outlet>
+</div>

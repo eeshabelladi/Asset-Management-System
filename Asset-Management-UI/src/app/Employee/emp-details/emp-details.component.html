@@ -1,0 +1,257 @@
+<div>
+  <div>
+    <h2>Employee Details</h2>
+  </div>
+  <!--Search and create employee button-->
+  <div class="search-create-container">
+    <form class="d-flex" role="search" id="searchForm" (ngSubmit)="onSearch()">
+      <input
+        id="searchInput"
+        class="form-control me-1"
+        type="search"
+        placeholder="Search by GID"
+        aria-label="Search"
+        [(ngModel)]="searchGid"
+        name="searchGid"
+        required
+      />
+      <button class="btn btn-outline-success" type="submit">Search</button>
+    </form>
+    <div>
+      <button
+        type="button"
+        class="btn btn-primary"
+        data-bs-toggle="modal"
+        data-bs-target="#createEmployeeModal"
+      >
+        Create new employee
+      </button>
+    </div>
+  </div>
+  <!--Modal for creating employee Form-->
+  <div
+    class="modal fade"
+    id="createEmployeeModal"
+    tabindex="-1"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">
+            Enter Employee details
+          </h1>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <form
+            [formGroup]="createEmployeeForm"
+            (ngSubmit)="onCreateFormSubmit()"
+          >
+            <div class="mb-3">
+              <label for="gid" class="form-label">GID</label>
+              <input
+                type="text"
+                class="form-control"
+                formControlName="gid"
+                required
+              />
+            </div>
+            <div class="mb-3">
+              <label for="fullname" class="form-label">Full Name</label>
+              <input
+                type="text"
+                class="form-control"
+                formControlName="fullName"
+                required
+              />
+            </div>
+            <div class="mb-3">
+              <label for="email" class="form-label">Email</label>
+              <input
+                type="email"
+                class="form-control"
+                formControlName="email"
+                required
+              />
+            </div>
+            <div class="mb-3">
+              <label for="password" class="form-label">Password</label>
+              <input
+                type="password"
+                class="form-control"
+                formControlName="password"
+                required
+              />
+            </div>
+            <div class="mb-3">
+              <label for="managerid" class="form-label">Manager ID</label>
+              <input
+                type="text"
+                class="form-control"
+                formControlName="managerId"
+                required
+              />
+            </div>
+            <button
+              type="button"
+              class="btn btn-secondary me-3"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+            <button
+              type="submit"
+              class="btn btn-primary"
+              data-bs-dismiss="modal"
+            >
+              Create employee
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--Employee Table-->
+  <div class="table-container">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">S.No</th>
+          <th scope="col">GID</th>
+          <th scope="col">Full Name</th>
+          <th scope="col">E-Mail</th>
+          <th scope="col">Is Active</th>
+          <th scope="col">Manager</th>
+          <th scope="col">Created By</th>
+          <th scope="col">Options</th>
+        </tr>
+      </thead>
+      <tbody id="employeeTableBody">
+        <tr *ngFor="let item of employees$ | async; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ item.gid }}</td>
+          <td>{{ item.fullName }}</td>
+          <td>{{ item.email }}</td>
+          <td>
+            <span *ngIf="item.isActive; else inactiveIcon">
+              &#10004;
+              <!-- Unicode tick symbol -->
+            </span>
+            <ng-template #inactiveIcon>
+              &#10008;
+              <!-- Unicode cross symbol -->
+            </ng-template>
+          </td>
+
+          <td>{{ item.managerName }}</td>
+          <td>{{ item.empCreatedByName }}</td>
+          <td>
+            <button
+              class="btn btn-dark btn-sm me-2"
+              data-bs-toggle="modal"
+              data-bs-target="#editEmployeeModal"
+              (click)="loadEmployeeForEdit(item.gid)"
+            >
+              Edit
+            </button>
+            <button
+              class="btn btn-danger btn-sm empDelete"
+              (click)="onDelete(item.employeeId)"
+            >
+              Delete
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<!-- Edit employee Modal -->
+<div
+  class="modal fade"
+  id="editEmployeeModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Employee</h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="editEmployeeForm" (ngSubmit)="onEditFormSubmit()">
+          <input type="hidden" formControlName="id" />
+          <div class="mb-3">
+            <label for="editGid" class="form-label">GID</label>
+            <input
+              type="text"
+              class="form-control"
+              id="editGid"
+              formControlName="gid"
+              required
+            />
+          </div>
+          <div class="mb-3">
+            <label for="editFullname" class="form-label">Full Name</label>
+            <input
+              type="text"
+              class="form-control"
+              id="editFullname"
+              formControlName="fullName"
+              required
+            />
+          </div>
+          <div class="mb-3">
+            <label for="editEmail" class="form-label">Email</label>
+            <input
+              type="email"
+              class="form-control"
+              id="editEmail"
+              formControlName="email"
+              required
+            />
+          </div>
+          <div class="mb-3">
+            <label for="editIsActive" class="form-label">Is Active</label>
+            <select
+              class="form-select"
+              id="editIsActive"
+              formControlName="isActive"
+              required
+            >
+              <option value="true">Yes</option>
+              <option value="false">No</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="editManagerid" class="form-label">Manager ID</label>
+            <input
+              type="text"
+              class="form-control"
+              id="editManagerid"
+              formControlName="managerId"
+              required
+            />
+          </div>
+          <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">
+            Update
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

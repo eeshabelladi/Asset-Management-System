@@ -1,0 +1,38 @@
+.sidebar {
+  width: 200px;
+  height: calc(100vh - 50px); /* Adjust for header height */
+  background: #343a40;
+  color: #fff;
+  position: fixed;
+  top: 50px; /* Adjust for header height */
+}
+
+.sidebar-header {
+  padding: 10px;
+  background: #343a40;                                                                                  
+}
+
+.list-unstyled {
+  padding: 0;
+}
+
+.list-unstyled li {
+  padding: 10px;
+  padding-left: 20px;
+}
+
+.list-unstyled li a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.list-unstyled li a:hover {
+  color: #007bff;
+  text-decoration: none;
+  cursor: pointer;
+}
+.content {
+    margin-left: 200px;
+    margin-top: 60px; /* Adjust for header height */
+    padding: 20px;
+}

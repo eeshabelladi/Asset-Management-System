@@ -1,0 +1,39 @@
+<h2>Request Form</h2>
+<form [formGroup]="createRequestForm" (ngSubmit)="onSubmit()" class="row g-3">
+  <div class="col-md-4">
+    <label for="requestType" class="form-label">Request Type</label>
+    <select id="Requesttype" class="form-select" [(ngModel)]="selectedRequestType" name="requestType" formControlName="requestType" (change)="onRequestTypeChange()">
+      <option value="Replace Asset">Replace Asset</option>
+      <option value="New Asset">New Asset</option>
+    </select>
+  </div>
+  
+  <!-- Conditionally show "Select your Asset" dropdown -->
+  <div class="col-md-4" *ngIf="selectedRequestType === 'Replace Asset'">
+    <label for="selectAsset" class="form-label">Select your Asset</label>
+    <select id="selectAsset" class="form-select" name="selectAsset" formControlName="SerialNumber">
+      <option *ngFor="let asset of assets" [value]="asset.serialNumber">{{ asset.serialNumber }}</option>
+    </select>
+  </div>
+  
+  <!-- Conditionally show "Select Asset type" dropdown -->
+  <div class="col-md-4" *ngIf="selectedRequestType === 'New Asset'">
+    <label for="assetTypes" class="form-label">Select Asset type</label>
+    <select id="selectAssetType" class="form-select" name="selectAssetType" formControlName="ReqAssetType">
+      <option>Laptop</option>
+      <option>Charger</option>
+      <option>Mouse</option>
+      <option>Headset</option>
+      <option>Monitor</option>
+    </select>
+  </div>
+
+  <div class="col-8">
+    <label for="reason" class="form-label">Reason</label>
+    <input type="text" class="form-control" id="reason" name="reason" placeholder="Give your reason here" formControlName="reason">
+  </div>
+  
+  <div class="col-12 mt-4">
+    <button type="submit" class="btn btn-primary">Submit Request</button>
+  </div>
+</form>

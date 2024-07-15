@@ -1,0 +1,25 @@
+
+<div *ngIf="employeeDetails" >
+    <h2>Welcome {{employeeDetails.fullName}}!!</h2>
+    <div class="container">
+    <table>
+      <tr>
+        <th>GID</th>
+        <td>{{ employeeDetails.gid }}</td>
+      </tr>
+      <tr>
+        <th>Full Name</th>
+        <td>{{ employeeDetails.fullName }}</td>
+      </tr>
+      <tr>
+        <th>Email</th>
+        <td>{{ employeeDetails.email }}</td>
+      </tr>
+      <tr>
+        <th>Manager</th>
+        <td>{{ employeeDetails.managerName }}</td>
+      </tr>
+    </table>
+</div>
+  </div>
+  
